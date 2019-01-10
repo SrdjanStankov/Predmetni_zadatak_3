@@ -101,7 +101,6 @@ namespace PZ3_NetworkService.ViewModel
 			{
 				int idx = StaticClass.Servers.IndexOf(selectedServer);
 				StaticClass.Servers.RemoveAt(idx);
-				StaticClass.Rectangles.RemoveAt(idx);
 			}
 		}
 
@@ -113,7 +112,6 @@ namespace PZ3_NetworkService.ViewModel
 				if (!CheckIfExist(currentServer))
 				{
 					StaticClass.Servers.Add(new Server(currentServer));
-					StaticClass.Rectangles.Add(new Rectangle());
 				}
 			}
 		}

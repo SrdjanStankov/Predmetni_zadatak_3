@@ -9,9 +9,6 @@
              xmlns:viewModel="clr-namespace:PZ3_NetworkService.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <UserControl.DataContext>
-        <viewModel:NetworkDataViewModel/>
-    </UserControl.DataContext>
     <Grid Height="419">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
