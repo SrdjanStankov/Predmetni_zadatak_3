@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Windows.Shapes;
 using PZ3_NetworkService.Model;
 using PZ3_NetworkService.StaticClasses;
 
@@ -101,6 +99,7 @@ namespace PZ3_NetworkService.ViewModel
 			{
 				int idx = StaticClass.Servers.IndexOf(selectedServer);
 				StaticClass.Servers.RemoveAt(idx);
+				StaticClass.Rectangles.RemoveAt(idx);
 			}
 		}
 
@@ -112,6 +111,7 @@ namespace PZ3_NetworkService.ViewModel
 				if (!CheckIfExist(currentServer))
 				{
 					StaticClass.Servers.Add(new Server(currentServer));
+					StaticClass.Rectangles.Add(new MyRect());
 				}
 			}
 		}
@@ -171,6 +171,6 @@ namespace PZ3_NetworkService.ViewModel
 			}
 		}
 
-		
+
 	}
 }

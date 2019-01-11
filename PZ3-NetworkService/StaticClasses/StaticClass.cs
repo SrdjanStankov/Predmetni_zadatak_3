@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Shapes;
 using PZ3_NetworkService.Model;
 
 namespace PZ3_NetworkService.StaticClasses
@@ -14,7 +9,7 @@ namespace PZ3_NetworkService.StaticClasses
 		private const int IpAddressNum = 9;
 
 		public static ObservableCollection<Server> Servers { get; set; }
-		public static ObservableCollection<Rectangle> Rectangles { get; set; }
+		public static ObservableCollection<MyRect> Rectangles { get; set; }
 		public static ObservableCollection<string> IpAddresses { get; set; }
 
 		private static NetworkManagment nm = new NetworkManagment();
@@ -22,7 +17,7 @@ namespace PZ3_NetworkService.StaticClasses
 		static StaticClass()
 		{
 			Servers = new ObservableCollection<Server>();
-			Rectangles = new ObservableCollection<Rectangle>();
+			Rectangles = new ObservableCollection<MyRect>();
 			nm.CreateListener();
 			LoadIps();
 		}

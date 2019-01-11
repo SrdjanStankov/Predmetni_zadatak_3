@@ -66,6 +66,9 @@ namespace PZ3_NetworkService
 
 									// Azuriranje potrebnih stvari u aplikaciji
 									StaticClass.Servers[id].Value = value;
+									Console.WriteLine(StaticClass.Rectangles[id].Height);
+									StaticClass.Rectangles[id].Height = value * 2;
+									Console.WriteLine(StaticClass.Rectangles[id].Height);
 									using (StreamWriter sw = new StreamWriter("Log.txt",true))
 									{
 										sw.WriteLine(DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + ": " + StaticClass.Servers[id].Name + ", " + value);

@@ -21,12 +21,17 @@
         </Grid>
         <Grid Grid.Row="2" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Height="250" Orientation="Horizontal">
-                <ItemsControl ItemsSource="{Binding Rectangles, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <ItemsControl ItemsSource="{Binding Rectangles}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <StackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Rectangle Height="{Binding Height}" Fill="Aqua" VerticalAlignment="Bottom" Margin="3" Width="20"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
         </Grid>

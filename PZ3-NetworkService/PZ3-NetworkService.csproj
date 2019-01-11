@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\MyRect.cs" />
     <Compile Include="MyICommand.cs" />
     <Compile Include="NetworkManagment.cs" />
     <Compile Include="StaticClasses\StaticClass.cs" />
