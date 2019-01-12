@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows;
 using PZ3_NetworkService.Model;
 using PZ3_NetworkService.StaticClasses;
 
@@ -8,6 +9,8 @@ namespace PZ3_NetworkService.ViewModel
 	{
 		public MyICommand ShowButtonCommand { get; set; }
 		public ObservableCollection<MyRect> Rectangles { get; set; }
+		public Visibility Vis { get; set; } = Visibility.Visible;
+		public string ShowButtonText { get; set; } = "SHOW";
 
 		public DataChartViewModel()
 		{
@@ -17,11 +20,10 @@ namespace PZ3_NetworkService.ViewModel
 
 		public void OnShow()
 		{
-			//Rectangles.Clear();
-			//for (int i = 0 ; i < StaticClass.Servers.Count ; i++)
-			//{
-			//	Rectangles.Add(new Rectangle() { Fill = Brushes.Aqua, VerticalAlignment = VerticalAlignment.Bottom, Margin = new Thickness(3), Width = 20, Height = StaticClass.Servers[i].Value });
-			//}
+			ShowButtonText = (ShowButtonText == "SHOW") ? "HIDE" : "SHOW";
+			OnPropertyChanged("ShowButtonText");
+			Vis = (Vis == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
+			OnPropertyChanged("Vis");
 		}
 	}
 }

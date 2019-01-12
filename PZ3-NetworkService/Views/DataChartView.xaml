@@ -17,10 +17,11 @@
             <TextBlock Text="DATA CHART" FontSize="32" Foreground="Aqua" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         <Grid Grid.Row="1" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="200" Content="SHOW" Command="{Binding ShowButtonCommand}"/>
+            <Button Width="200" Content="{Binding ShowButtonText}" Command="{Binding ShowButtonCommand}"/>
         </Grid>
         <Grid Grid.Row="2" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Height="250" Orientation="Horizontal">
+                <Rectangle Width="850" Height="300" Fill="White" Visibility="{Binding Vis}" Panel.ZIndex="5" Grid.IsSharedSizeScope="True"/>
                 <ItemsControl ItemsSource="{Binding Rectangles}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>

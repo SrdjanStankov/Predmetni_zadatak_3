@@ -40,6 +40,23 @@ namespace PZ3_NetworkService.ViewModel
 				ImgSrc = ImgSrc
 			};
 			FindServerCommand = new MyICommand(OnFilter);
+
+			AddStartingValues();
+		}
+
+		private void AddStartingValues()
+		{
+			StaticClass.Servers.Add(new Server() { Id = 1, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
+			StaticClass.Servers.Add(new Server() { Id = 2, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
+			StaticClass.Servers.Add(new Server() { Id = 3, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
+			StaticClass.Servers.Add(new Server() { Id = 4, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
+			StaticClass.Servers.Add(new Server() { Id = 5, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
+
+			StaticClass.Rectangles.Add(new MyRect());
+			StaticClass.Rectangles.Add(new MyRect());
+			StaticClass.Rectangles.Add(new MyRect());
+			StaticClass.Rectangles.Add(new MyRect());
+			StaticClass.Rectangles.Add(new MyRect());
 		}
 
 		private void OnFilter()

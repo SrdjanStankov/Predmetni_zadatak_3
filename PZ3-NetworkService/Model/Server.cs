@@ -110,22 +110,22 @@
 		{
 			if (string.IsNullOrWhiteSpace(imgSrc))
 			{
-				ValidationErrors["ImgSrc"] = "Image source is required.";
+				ValidationErrors["ImgSrc"] = "Slika nedostaje.";
 			}
 
 			if (string.IsNullOrWhiteSpace(ipAddress))
 			{
-				ValidationErrors["IpAddress"] = "Ip address is required";
+				ValidationErrors["IpAddress"] = "IP addresa nedostaje";
 			}
 
 			if (string.IsNullOrWhiteSpace(name))
 			{
-				ValidationErrors["Name"] = "Name is required";
+				ValidationErrors["Name"] = "Ime nedostaje";
 			}
 
 			if (id <= 0)
 			{
-				ValidationErrors["Id"] = "Id must be greater than '0'";
+				ValidationErrors["Id"] = "ID mora biti veci od 0";
 			}
 		}
 	}

@@ -36,7 +36,7 @@ namespace PZ3_NetworkService
 						byte[] bytes = new byte[1024];
 						int i = stream.Read(bytes, 0, bytes.Length);
 						//Primljena poruka je sacuvana u incomming stringu
-						incomming = System.Text.Encoding.ASCII.GetString(bytes, 0, i);
+						incomming = Encoding.ASCII.GetString(bytes, 0, i);
 
 						//Ukoliko je primljena poruka pitanje koliko objekata ima u sistemu -> odgovor
 						if (incomming.Equals("Need object count"))
@@ -66,9 +66,10 @@ namespace PZ3_NetworkService
 
 									// Azuriranje potrebnih stvari u aplikaciji
 									StaticClass.Servers[id].Value = value;
-									Console.WriteLine(StaticClass.Rectangles[id].Height);
 									StaticClass.Rectangles[id].Height = value * 2;
-									Console.WriteLine(StaticClass.Rectangles[id].Height);
+
+									Console.WriteLine("Received value " + value + " For object " + id);
+
 									using (StreamWriter sw = new StreamWriter("Log.txt",true))
 									{
 										sw.WriteLine(DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + ": " + StaticClass.Servers[id].Name + ", " + value);
