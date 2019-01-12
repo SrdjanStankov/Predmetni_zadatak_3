@@ -2,22 +2,32 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using PZ3_NetworkService.Model;
 
 namespace PZ3_NetworkService.ViewModel
 {
 	public class ReportViewModel : BindableBase
 	{
+		private string _errorMessage = "";
+
 		public MyICommand ShowReportCommand { get; set; }
 		public string ReportShow { get; set; }
-		public string StartDate { get; set; }
-		public string EndDate { get; set; }
-
+		public string StartDate { get; set; } = "";
+		public string EndDate { get; set; } = "";
+		public string ErrorMessage
+		{
+			get
+			{
+				return _errorMessage;
+			}
+			set
+			{
+				_errorMessage = value;
+				OnPropertyChanged("ErrorMessage");
+			}
+		}
 		public ReportViewModel()
 		{
 			ShowReportCommand = new MyICommand(ShowReport);
-			StartDate = "";
-			EndDate = "";
 		}
 
 		private void ShowReport()
@@ -25,6 +35,8 @@ namespace PZ3_NetworkService.ViewModel
 			try
 			{
 				ReportShow = "";
+				DateTime startDate;
+				DateTime endDate;
 
 				string[] startDat = StartDate.Split('.');
 				string[] endDat = EndDate.Split('.');
@@ -32,55 +44,74 @@ namespace PZ3_NetworkService.ViewModel
 				#region checking combobox
 				if (startDat.Length != 3)
 				{
-					MessageBox.Show("Invalid Starting date. Format is dd.mm.yyyy");
+					ErrorMessage = "Nepravilan pocetni datum. Format je DD.MM.GGGG";
 					return;
 				}
 				if (endDat.Length != 3)
 				{
-					MessageBox.Show("Invalid End date. Format is dd.mm.yyyy");
+					ErrorMessage = "Nepravilan krajnji datum. Format je DD.MM.GGGG";
 					return;
 				}
 
 				if (!int.TryParse(startDat[0], out int startD))
 				{
-					MessageBox.Show("Invalid Starting date. Format is dd.mm.yyyy");
+					ErrorMessage = "Dan mora da bude broj";
 					return;
 				}
 				if (!int.TryParse(startDat[1], out int startM))
 				{
-					MessageBox.Show("Invalid Starting date. Format is dd.mm.yyyy");
+					ErrorMessage = "Mesec mora da bude broj";
 					return;
 				}
 				if (!int.TryParse(startDat[2], out int startY))
 				{
-					MessageBox.Show("Invalid Starting date. Format is dd.mm.yyyy");
+					ErrorMessage = "Godina mora da bude broj";
 					return;
 				}
 
 				if (!int.TryParse(endDat[0], out int endD))
 				{
-					MessageBox.Show("Invalid End date. Format is dd.mm.yyyy");
+					ErrorMessage = "Dan mora da bude broj";
 					return;
 				}
 				if (!int.TryParse(endDat[1], out int endM))
 				{
-					MessageBox.Show("Invalid End date. Format is dd.mm.yyyy");
+					ErrorMessage = "Mesec mora da bude broj";
 					return;
 				}
 				if (!int.TryParse(endDat[2], out int endY))
 				{
-					MessageBox.Show("Invalid End date. Format is dd.mm.yyyy");
+					ErrorMessage = "Godina mora da bude broj";
 					return;
 				}
-				#endregion
 
-				DateTime startDate = new DateTime(startY,startM,startD);
-				DateTime endDate = new DateTime(endY, endM, endD);
+				try
+				{
+					startDate = new DateTime(startY, startM, startD);
+				}
+				catch (Exception)
+				{
+					ErrorMessage = "Nepostojeci pocetni datum";
+					return;
+				}
+
+				try
+				{
+					endDate = new DateTime(endY, endM, endD);
+				}
+				catch (Exception)
+				{
+					ErrorMessage = "Nepostojeci krajnji datum";
+					return;
+				}
 
 				if (startDate > endDate)
 				{
-					MessageBox.Show("Starting date is larger than ending date.");
+					ErrorMessage = "Krajnji datum je manji od pocetnog datuma";
+					return;
 				}
+				ErrorMessage = "";
+				#endregion
 
 				SortedDictionary<string, string> reports = new SortedDictionary<string, string>();
 

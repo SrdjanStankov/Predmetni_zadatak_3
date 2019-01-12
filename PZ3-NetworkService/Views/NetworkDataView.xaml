@@ -1,5 +1,4 @@
-﻿<UserControl 
-             x:Class="PZ3_NetworkService.Views.NetworkData"
+﻿<UserControl x:Class="PZ3_NetworkService.Views.NetworkData"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,8 +7,8 @@
              xmlns:model="clr-namespace:PZ3_NetworkService.Model"
              xmlns:viewModel="clr-namespace:PZ3_NetworkService.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Width="650" Height="419">
+             d:DesignHeight="407" d:DesignWidth="650">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
@@ -19,14 +18,14 @@
         <Grid Grid.Row="0" Margin="0,3,0,0" Height="40" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <Label Margin="3,0" Content="IP adresa" VerticalAlignment="Center" FontSize="16"/>
-                <ComboBox Margin="2,0" VerticalContentAlignment="Center" Width="200" SelectedItem="{Binding FilterServer.IpAddress, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding IpAddresses, Mode=OneWay}" FontSize="16" IsEditable="True" ToolTip="Odaberite IP adresu" IsReadOnly="True" Text="-Odaberite IP adresu-" Focusable="False"/>
+                <ComboBox Margin="2,0" VerticalContentAlignment="Center" Width="200" SelectedItem="{Binding FilterServer.IpAddress, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding IpAddresses, Mode=OneWay}" FontSize="16" IsEditable="True" ToolTip="IP adresa za filtriranje" IsReadOnly="True" Text="-Odaberite IP adresu-" Focusable="False"/>
                 <Label VerticalContentAlignment="Center" Content="ID" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                     <RadioButton VerticalContentAlignment="Center" Content="&lt;" FontSize="16" IsChecked="{Binding Lt, Mode=TwoWay}"/>
                     <RadioButton VerticalContentAlignment="Center" Content="&gt;" FontSize="16" IsChecked="{Binding Gt, Mode=TwoWay}"/>
                 </StackPanel>
-                <TextBox VerticalContentAlignment="Center" FontSize="16" Width="200" Text="{Binding FilterServer.Id}"/>
-                <Button FontSize="16" Margin="5,0" Content="Filter" Width="70" Command="{Binding FindServerCommand}"/>
+                <TextBox VerticalContentAlignment="Center" FontSize="16" Width="200" ToolTip="ID za filtriranje" Text="{Binding FilterServer.Id}"/>
+                <Button FontSize="16" Margin="5,0" Content="Filter" Width="70" ToolTip="Filtriraj!"  Command="{Binding FindServerCommand}"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Width="533" Margin="95,3,16,3" HorizontalAlignment="Center">
@@ -109,8 +108,8 @@
                             <Label Content="IP adresa:" HorizontalContentAlignment="Left" FontSize="16"/>
                         </StackPanel>
                         <StackPanel Width="150" Margin="5,0,0,0" Orientation="Vertical">
-                            <TextBox FontSize="16" Margin="3,3,0,3" Text="{Binding CurrentServer.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBox FontSize="16" Margin="3,3,0,3" Text="{Binding CurrentServer.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox FontSize="16" Margin="3,3,0,3" ToolTip="Jedinstveni broj"  Text="{Binding CurrentServer.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBox FontSize="16" Margin="3,3,0,3" ToolTip="Ime servera"  Text="{Binding CurrentServer.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             <ComboBox FontSize="16" Margin="3,3,0,3" SelectedItem="{Binding SelectedIp, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding IpAddresses, Mode=OneWay}" IsEditable="True" ToolTip="Odaberite IP adresu" IsReadOnly="True" Text=" Adresa" Focusable="False"/>
                         </StackPanel>
                         <StackPanel Orientation="Vertical">
@@ -126,8 +125,8 @@
             </Grid>
             <Grid Grid.Column="1" Width="auto" HorizontalAlignment="Right">
                 <StackPanel Orientation="Vertical" VerticalAlignment="Top">
-                    <Button Width="auto" FontSize="16" Height="auto" Content="Dodaj" Margin="3" Command="{Binding AddServerCommand}"/>
-                    <Button Width="100" FontSize="16" Height="auto" Content="Obrisi" Margin="3" Command="{Binding DeleteServerCommand}"/>
+                    <Button Width="auto" ToolTip="Dodaje novi server u listu"  FontSize="16" Height="auto" Content="Dodaj" Margin="3" Command="{Binding AddServerCommand}"/>
+                    <Button Width="100" ToolTip="Brise obelezeni server iz liste"  FontSize="16" Height="auto" Content="Obrisi" Margin="3" Command="{Binding DeleteServerCommand}"/>
                 </StackPanel>
             </Grid>
         </Grid>

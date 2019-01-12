@@ -6,22 +6,18 @@
              xmlns:local="clr-namespace:PZ3_NetworkService.Views"
              xmlns:viewModel="clr-namespace:PZ3_NetworkService.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="394" d:DesignWidth="676">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="DATA CHART" FontSize="32" Foreground="Aqua" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button Margin="3" Width="200" ToolTip="Prikazuje / Sakriva grafik" Content="{Binding ShowButtonText}" Command="{Binding ShowButtonCommand}"/>
         </Grid>
         <Grid Grid.Row="1" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Width="200" Content="{Binding ShowButtonText}" Command="{Binding ShowButtonCommand}"/>
-        </Grid>
-        <Grid Grid.Row="2" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
             <StackPanel Height="250" Orientation="Horizontal">
-                <Rectangle Width="850" Height="300" Fill="White" Visibility="{Binding Vis}" Panel.ZIndex="5" Grid.IsSharedSizeScope="True"/>
+                <Rectangle VerticalAlignment="Center" HorizontalAlignment="Center" Width="688" Height="325" Fill="White" Visibility="{Binding Vis}" Panel.ZIndex="5" Grid.IsSharedSizeScope="True" Margin="0,-75,0,0"/>
                 <ItemsControl ItemsSource="{Binding Rectangles}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -30,7 +26,18 @@
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Rectangle Height="{Binding Height}" Fill="Aqua" VerticalAlignment="Bottom" Margin="3" Width="20"/>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="200"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Rectangle Height="{Binding Height}" Fill="Aqua" VerticalAlignment="Bottom" Margin="3" Width="20"/>
+                                </Grid>
+                                <Grid Grid.Row="1">
+                                    <Label Content="{Binding NameRect}" Width="auto" Margin="3"/>
+                                </Grid>
+                            </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

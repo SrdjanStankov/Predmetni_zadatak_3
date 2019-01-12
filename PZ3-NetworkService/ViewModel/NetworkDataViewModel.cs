@@ -52,11 +52,11 @@ namespace PZ3_NetworkService.ViewModel
 			StaticClass.Servers.Add(new Server() { Id = 4, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
 			StaticClass.Servers.Add(new Server() { Id = 5, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
 
-			StaticClass.Rectangles.Add(new MyRect());
-			StaticClass.Rectangles.Add(new MyRect());
-			StaticClass.Rectangles.Add(new MyRect());
-			StaticClass.Rectangles.Add(new MyRect());
-			StaticClass.Rectangles.Add(new MyRect());
+			StaticClass.Rectangles.Add(new MyRect("svasta"));
+			StaticClass.Rectangles.Add(new MyRect("s"));
+			StaticClass.Rectangles.Add(new MyRect("s"));
+			StaticClass.Rectangles.Add(new MyRect("svast nesto"));
+			StaticClass.Rectangles.Add(new MyRect("s"));
 		}
 
 		private void OnFilter()
@@ -128,7 +128,7 @@ namespace PZ3_NetworkService.ViewModel
 				if (!CheckIfExist(currentServer))
 				{
 					StaticClass.Servers.Add(new Server(currentServer));
-					StaticClass.Rectangles.Add(new MyRect());
+					StaticClass.Rectangles.Add(new MyRect(currentServer.Name));
 				}
 			}
 		}

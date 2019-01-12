@@ -6,25 +6,36 @@
              xmlns:local="clr-namespace:PZ3_NetworkService.Views"
              xmlns:viewModel="clr-namespace:PZ3_NetworkService.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="351" d:DesignWidth="635">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="REPORT" FontSize="32" Foreground="Aqua" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
-        <Grid Grid.Row="1" Height="auto" HorizontalAlignment="Center">
+        <Grid Grid.Row="0" Margin="3" Height="auto" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <TextBox Width="200" Margin="3" Text="{Binding StartDate}"/>
-                <TextBox Width="200" Margin="3" Text="{Binding EndDate}" />
-                <Button Width="200" Content="SHOW" Margin="3" Command="{Binding ShowReportCommand}"/>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" Text="Pocetni datum"/>
+                    <TextBox ToolTip="Format je DD.MM.GGGG" FontSize="16" Width="200" Margin="3" Text="{Binding StartDate}"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" Text="Krajnji datum"/>
+                    <TextBox ToolTip="Format je DD.MM.GGGG" FontSize="16" Width="200" Margin="3" Text="{Binding EndDate}" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock HorizontalAlignment="Center" FontSize="16" Foreground="Red" Text=""/>
+                    <Button ToolTip="PRIKAZI!" FontSize="16" Width="200" Height="23" Content="PRIKAZI" Margin="3" Command="{Binding ShowReportCommand}"/>
+                </StackPanel>
             </StackPanel>
         </Grid>
-        <Grid Grid.Row="2" Height="auto" HorizontalAlignment="Center">
-            <TextBox Width="612" Height="260" Margin="3" Text="{Binding ReportShow}" TextWrapping="WrapWithOverflow"/>
+        <Grid Grid.Row="1" Margin="-3" Height="auto" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock HorizontalAlignment="Center" FontSize="16" Foreground="Red" Text="{Binding ErrorMessage}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Margin="3" Height="auto" HorizontalAlignment="Center">
+            <TextBox FontSize="16" Width="612" Height="260" Margin="3" Text="{Binding ReportShow}" TextWrapping="WrapWithOverflow"/>
         </Grid>
     </Grid>
 </UserControl>

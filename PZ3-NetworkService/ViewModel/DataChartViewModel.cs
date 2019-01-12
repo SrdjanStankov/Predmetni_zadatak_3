@@ -10,7 +10,7 @@ namespace PZ3_NetworkService.ViewModel
 		public MyICommand ShowButtonCommand { get; set; }
 		public ObservableCollection<MyRect> Rectangles { get; set; }
 		public Visibility Vis { get; set; } = Visibility.Visible;
-		public string ShowButtonText { get; set; } = "SHOW";
+		public string ShowButtonText { get; set; } = "PRIKAZI";
 
 		public DataChartViewModel()
 		{
@@ -20,7 +20,7 @@ namespace PZ3_NetworkService.ViewModel
 
 		public void OnShow()
 		{
-			ShowButtonText = (ShowButtonText == "SHOW") ? "HIDE" : "SHOW";
+			ShowButtonText = (ShowButtonText == "PRIKAZI") ? "SAKRIJ" : "PRIKAZI";
 			OnPropertyChanged("ShowButtonText");
 			Vis = (Vis == Visibility.Visible) ? Visibility.Collapsed : Visibility.Visible;
 			OnPropertyChanged("Vis");

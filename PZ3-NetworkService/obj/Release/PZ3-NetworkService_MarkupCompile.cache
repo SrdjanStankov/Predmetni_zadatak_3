@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Release\
 PZ3_NetworkService
 none
 false
-DEBUG;TRACE
+TRACE
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\App.xaml
 51702484609
 
-261072410591
+261962893106
 131569487696
 MainWindow.xaml;Views\DataChartView.xaml;Views\NetworkDataView.xaml;Views\NetworkVeiw.xaml;Views\ReportView.xaml;
 

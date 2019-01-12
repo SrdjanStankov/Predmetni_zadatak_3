@@ -36,10 +36,10 @@
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0" Grid.ColumnSpan="2">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="Networ Data" Command="{Binding NetworkDataCommand}"/>
-                <MenuItem Header="Report" Command="{Binding ReportCommand}"/>
-                <MenuItem Header="Data Chart" Command="{Binding DataChartCommand}"/>
-                <MenuItem Header="Network View" Command="{Binding NetworkViewCommand}"/>
+                <MenuItem FontSize="16" Header="Mrezni podaci" Command="{Binding NetworkDataCommand}"/>
+                <MenuItem FontSize="16" Header="Izvestaj" Command="{Binding ReportCommand}"/>
+                <MenuItem FontSize="16" Header="Grafik" Command="{Binding DataChartCommand}"/>
+                <MenuItem FontSize="16" Header="Pregled mreze" Command="{Binding NetworkViewCommand}"/>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
