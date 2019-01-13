@@ -10,20 +10,11 @@ namespace PZ3_NetworkService
 	{
 		private readonly Dictionary<string, string> validationsErrors = new Dictionary<string, string>();
 
-		public bool IsValid
-		{
-			get
-			{
-				return validationsErrors.Count < 1;
-			}
-		}
+		public bool IsValid => validationsErrors.Count < 1;
 
 		public string this[string fieldName]
 		{
-			get
-			{
-				return validationsErrors.ContainsKey(fieldName) ? validationsErrors[fieldName] : "";
-			}
+			get => validationsErrors.ContainsKey(fieldName) ? validationsErrors[fieldName] : "";
 			set
 			{
 				if (validationsErrors.ContainsKey(fieldName))

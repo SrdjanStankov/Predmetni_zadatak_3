@@ -70,7 +70,7 @@ namespace PZ3_NetworkService
 
 									Console.WriteLine("Received value " + value + " For object " + id);
 
-									using (StreamWriter sw = new StreamWriter("Log.txt",true))
+									using (StreamWriter sw = new StreamWriter("Log.txt", true))
 									{
 										sw.WriteLine(DateTime.Now.ToShortDateString() + ", " + DateTime.Now.ToShortTimeString() + ": " + StaticClass.Servers[id].Name + ", " + value);
 									}
@@ -84,9 +84,10 @@ namespace PZ3_NetworkService
 						}
 					}, null);
 				}
-			});
-
-			listeningThread.IsBackground = true;
+			})
+			{
+				IsBackground = true
+			};
 			listeningThread.Start();
 		}
 	}

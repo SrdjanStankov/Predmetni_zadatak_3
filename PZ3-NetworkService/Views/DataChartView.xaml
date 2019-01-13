@@ -3,9 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PZ3_NetworkService.Views"
-             xmlns:viewModel="clr-namespace:PZ3_NetworkService.ViewModel"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="394" d:DesignWidth="676">
     <Grid>
         <Grid.RowDefinitions>
@@ -13,11 +11,13 @@
             <RowDefinition Height="500"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Margin="3" Width="200" ToolTip="Prikazuje / Sakriva grafik" Content="{Binding ShowButtonText}" Command="{Binding ShowButtonCommand}"/>
+            <Button FontSize="16" MinHeight="10" Margin="3" Width="200" ToolTip="Prikazuje / Sakriva grafik" Content="{Binding ShowButtonText}" Command="{Binding ShowButtonCommand}" Panel.ZIndex="10"/>
         </Grid>
-        <Grid Grid.Row="1" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Name="chart1" Grid.Row="1" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Rectangle VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="{Binding ElementName=chart1, Path=ActualWidth}" Height="{Binding ElementName=chart1, Path=ActualHeight}" Fill="White" Visibility="{Binding Vis}" Panel.ZIndex="5"/>
+            <Line Panel.ZIndex="1" Y1="107" Y2="107" Width="auto" Stroke="Red" StrokeThickness="3" X2="{Binding ElementName=chart1, Path=ActualWidth}"/>
+            <Line Panel.ZIndex="1" Y1="47" Y2="47" Stroke="Red" StrokeThickness="3" X2="{Binding ElementName=chart1, Path=ActualWidth}"/>
             <StackPanel Height="250" Orientation="Horizontal">
-                <Rectangle VerticalAlignment="Center" HorizontalAlignment="Center" Width="688" Height="325" Fill="White" Visibility="{Binding Vis}" Panel.ZIndex="5" Grid.IsSharedSizeScope="True" Margin="0,-75,0,0"/>
                 <ItemsControl ItemsSource="{Binding Rectangles}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -32,10 +32,10 @@
                                     <RowDefinition Height="auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid Grid.Row="0">
-                                    <Rectangle Height="{Binding Height}" Fill="Aqua" VerticalAlignment="Bottom" Margin="3" Width="20"/>
+                                    <Rectangle Height="{Binding Height}" Fill="CadetBlue" VerticalAlignment="Bottom" Margin="3" Width="20"/>
                                 </Grid>
                                 <Grid Grid.Row="1">
-                                    <Label Content="{Binding NameRect}" Width="auto" Margin="3"/>
+                                    <Label FontSize="16" Content="{Binding NameRect}" Width="auto" Margin="3"/>
                                 </Grid>
                             </Grid>
                         </DataTemplate>

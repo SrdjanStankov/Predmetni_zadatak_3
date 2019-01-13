@@ -46,3 +46,7 @@ E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\D
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.csproj.CoreCompileInputs.cache
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.exe
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.pdb
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\bin\Debug\GongSolutions.Wpf.DragDrop.dll
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\bin\Debug\GongSolutions.Wpf.DragDrop.pdb
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\bin\Debug\GongSolutions.Wpf.DragDrop.xml
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.csproj.CopyComplete

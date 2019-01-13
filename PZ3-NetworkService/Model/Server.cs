@@ -8,9 +8,7 @@
 		private string imgSrc;
 		private double value;
 
-		public Server()
-		{
-		}
+		public Server() { }
 
 		public Server(Server obj)
 		{
@@ -23,10 +21,7 @@
 
 		public int Id
 		{
-			get
-			{
-				return id;
-			}
+			get => id;
 
 			set
 			{
@@ -40,10 +35,7 @@
 
 		public string Name
 		{
-			get
-			{
-				return name;
-			}
+			get => name;
 
 			set
 			{
@@ -57,10 +49,7 @@
 
 		public string IpAddress
 		{
-			get
-			{
-				return ipAddress;
-			}
+			get => ipAddress;
 
 			set
 			{
@@ -74,10 +63,7 @@
 
 		public string ImgSrc
 		{
-			get
-			{
-				return imgSrc;
-			}
+			get => imgSrc;
 
 			set
 			{
@@ -91,10 +77,7 @@
 
 		public double Value
 		{
-			get
-			{
-				return value;
-			}
+			get => value;
 
 			set
 			{
@@ -104,6 +87,11 @@
 					OnPropertyChanged("Value");
 				}
 			}
+		}
+
+		public override string ToString()
+		{
+			return Name;
 		}
 
 		protected override void ValidateSelf()

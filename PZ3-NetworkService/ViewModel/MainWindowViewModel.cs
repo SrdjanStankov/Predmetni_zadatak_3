@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PZ3_NetworkService.ViewModel
+﻿namespace PZ3_NetworkService.ViewModel
 {
 	public class MainWindowViewModel : BindableBase
 	{
-		public MyICommand ReportCommand { get;set; }
+		public MyICommand ReportCommand { get; set; }
 		public MyICommand NetworkDataCommand { get; set; }
 		public MyICommand DataChartCommand { get; set; }
 		public MyICommand NetworkViewCommand { get; set; }
@@ -22,15 +16,9 @@ namespace PZ3_NetworkService.ViewModel
 
 		public BindableBase CurrentViewModel
 		{
-			get
-			{
-				return currentViewModel;
-			}
+			get => currentViewModel;
 
-			set
-			{
-				SetProperty(ref currentViewModel, value);
-			}
+			set => SetProperty(ref currentViewModel, value);
 		}
 
 
@@ -51,7 +39,6 @@ namespace PZ3_NetworkService.ViewModel
 		private void OnDataChart()
 		{
 			CurrentViewModel = dataChartViewModel;
-
 		}
 
 		private void OnNetworkData()

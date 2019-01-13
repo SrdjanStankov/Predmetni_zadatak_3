@@ -15,10 +15,7 @@ namespace PZ3_NetworkService.ViewModel
 		public string EndDate { get; set; } = "";
 		public string ErrorMessage
 		{
-			get
-			{
-				return _errorMessage;
-			}
+			get => _errorMessage;
 			set
 			{
 				_errorMessage = value;
@@ -34,9 +31,10 @@ namespace PZ3_NetworkService.ViewModel
 		{
 			try
 			{
-				ReportShow = "";
 				DateTime startDate;
 				DateTime endDate;
+				SortedDictionary<string, string> reports = new SortedDictionary<string, string>();
+				ReportShow = "";
 
 				string[] startDat = StartDate.Split('.');
 				string[] endDat = EndDate.Split('.');
@@ -113,7 +111,6 @@ namespace PZ3_NetworkService.ViewModel
 				ErrorMessage = "";
 				#endregion
 
-				SortedDictionary<string, string> reports = new SortedDictionary<string, string>();
 
 				using (StreamReader sr = new StreamReader("Log.txt"))
 				{
@@ -138,7 +135,7 @@ namespace PZ3_NetworkService.ViewModel
 				}
 
 				ReportShow = "REPORT:" + Environment.NewLine;
-				foreach (KeyValuePair<string, string> item in reports)
+				foreach (var item in reports)
 				{
 					ReportShow += item.Key + ":" + Environment.NewLine + item.Value;
 					OnPropertyChanged("ReportShow");

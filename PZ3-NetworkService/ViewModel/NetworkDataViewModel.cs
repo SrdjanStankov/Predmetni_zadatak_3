@@ -7,7 +7,14 @@ namespace PZ3_NetworkService.ViewModel
 {
 	public class NetworkDataViewModel : BindableBase
 	{
-		public ObservableCollection<Server> ServersToShow { get; set; }
+		public ObservableCollection<Server> ServersToShow
+		{
+			get => _serversToShow; set
+			{
+				_serversToShow = value;
+				OnPropertyChanged("ServersToShow");
+			}
+		}
 		public MyICommand AddServerCommand { get; set; }
 		public MyICommand DeleteServerCommand { get; set; }
 		public MyICommand FindServerCommand { get; set; }
@@ -20,8 +27,10 @@ namespace PZ3_NetworkService.ViewModel
 
 		public bool Lt { get; set; }
 		public bool Gt { get; set; }
+		public bool NaN { get; set; }
 
 		public NetworkManagment nm;
+		private ObservableCollection<Server> _serversToShow;
 
 		public NetworkDataViewModel()
 		{
@@ -46,24 +55,65 @@ namespace PZ3_NetworkService.ViewModel
 
 		private void AddStartingValues()
 		{
-			StaticClass.Servers.Add(new Server() { Id = 1, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
-			StaticClass.Servers.Add(new Server() { Id = 2, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
-			StaticClass.Servers.Add(new Server() { Id = 3, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
-			StaticClass.Servers.Add(new Server() { Id = 4, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
-			StaticClass.Servers.Add(new Server() { Id = 5, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "s" });
+			StaticClass.Servers.Add(new Server() { Id = 1, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "Server1" });
+			StaticClass.Servers.Add(new Server() { Id = 2, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "Server2" });
+			StaticClass.Servers.Add(new Server() { Id = 3, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "Server3" });
+			StaticClass.Servers.Add(new Server() { Id = 4, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "Server4" });
+			StaticClass.Servers.Add(new Server() { Id = 5, ImgSrc = ImgSrc, IpAddress = StaticClass.IpAddresses[0], Name = "Server5" });
 
-			StaticClass.Rectangles.Add(new MyRect("svasta"));
-			StaticClass.Rectangles.Add(new MyRect("s"));
-			StaticClass.Rectangles.Add(new MyRect("s"));
-			StaticClass.Rectangles.Add(new MyRect("svast nesto"));
-			StaticClass.Rectangles.Add(new MyRect("s"));
+			StaticClass.Rectangles.Add(new MyRect("Server1"));
+			StaticClass.Rectangles.Add(new MyRect("Server2"));
+			StaticClass.Rectangles.Add(new MyRect("Server3"));
+			StaticClass.Rectangles.Add(new MyRect("Server4"));
+			StaticClass.Rectangles.Add(new MyRect("Server5"));
 		}
 
 		private void OnFilter()
 		{
 			ObservableCollection<Server> finded = new ObservableCollection<Server>();
 
-			foreach (Server item in StaticClass.Servers)
+			if (filterServer.IpAddress == "NaN" && NaN)
+			{
+				return;
+			}
+
+			if (NaN)
+			{
+				foreach (var item in StaticClass.Servers)
+				{
+					if (item.IpAddress == filterServer.IpAddress)
+					{
+						finded.Add(item);
+					}
+				}
+				ServersToShow = finded;
+				return;
+			}
+
+			if (filterServer.IpAddress == "NaN")
+			{
+				foreach (var item in StaticClass.Servers)
+				{
+					if (Lt)
+					{
+						if (item.Id < FilterServer.Id)
+						{
+							finded.Add(item);
+						}
+					}
+					else if (Gt)
+					{
+						if (item.Id > FilterServer.Id)
+						{
+							finded.Add(item);
+						}
+					}
+				}
+				ServersToShow = finded;
+				return;
+			}
+
+			foreach (var item in StaticClass.Servers)
 			{
 				if (item.IpAddress == FilterServer.IpAddress)
 				{
@@ -74,7 +124,7 @@ namespace PZ3_NetworkService.ViewModel
 							finded.Add(item);
 						}
 					}
-					else
+					else if (Gt)
 					{
 						if (item.Id > FilterServer.Id)
 						{
@@ -85,23 +135,16 @@ namespace PZ3_NetworkService.ViewModel
 			}
 
 			ServersToShow = finded;
-			OnPropertyChanged("ServersToShow");
 		}
 
-		public ObservableCollection<string> IpAddresses
-		{
-			get
-			{
-				return StaticClass.IpAddresses;
-			}
-		}
+		public ObservableCollection<string> IpAddresses => new ObservableCollection<string>(StaticClass.IpAddresses)
+				{
+					"NaN"
+				};
 
 		public Server FilterServer
 		{
-			get
-			{
-				return filterServer;
-			}
+			get => filterServer;
 			set
 			{
 				filterServer = value;
@@ -135,7 +178,7 @@ namespace PZ3_NetworkService.ViewModel
 
 		private bool CheckIfExist(Server currentServer)
 		{
-			foreach (Server item in StaticClass.Servers)
+			foreach (var item in StaticClass.Servers)
 			{
 				if (item.Id == currentServer.Id)
 				{
@@ -147,10 +190,7 @@ namespace PZ3_NetworkService.ViewModel
 
 		public Server CurrentServer
 		{
-			get
-			{
-				return currentServer;
-			}
+			get => currentServer;
 			set
 			{
 				currentServer = value;
@@ -160,10 +200,7 @@ namespace PZ3_NetworkService.ViewModel
 
 		public string SelectedIp
 		{
-			get
-			{
-				return selectedIp;
-			}
+			get => selectedIp;
 
 			set
 			{
@@ -176,10 +213,7 @@ namespace PZ3_NetworkService.ViewModel
 
 		public Server SelectedServer
 		{
-			get
-			{
-				return selectedServer;
-			}
+			get => selectedServer;
 
 			set
 			{

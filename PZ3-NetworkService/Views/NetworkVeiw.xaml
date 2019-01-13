@@ -3,18 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PZ3_NetworkService.Views"
+             xmlns:dd="urn:gong-wpf-dragdrop"
+             xmlns:DnD ="clr-namespace:PZ3_NetworkService.Model"
              mc:Ignorable="d" 
+             DnD:DropBehavior.PreviewDropCommand="{Binding PreviewDropCommand}"
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <Style TargetType="ListBox">
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="MyImagesItemTemplate">
+            <Grid Width="100" Height="100">
+                <Image Source="{Binding Path=ImgSrc}"/>
+                <Label Content="{Binding Path=Name}"/>
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock Text="NETWORK VIEW" FontSize="32" Foreground="Aqua" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Grid>
-        <Grid Grid.Row="1" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
@@ -25,12 +38,11 @@
                     <ColumnDefinition Width="auto"/>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
-                    <TextBlock Text="Table" FontSize="32" Foreground="Aqua" Width="250" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <ListBox Width="200" ItemsSource="{Binding Destination, Mode=TwoWay}" Margin="3" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
                 </Grid>
                 <Grid Grid.Column="1">
                     <StackPanel Orientation="Vertical">
-                        <TextBlock Text="ListBox/ListView" FontSize="32" Foreground="Aqua" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                        <ListBox Width="200" Height="150"/>
+                        <ListBox Margin="3" dd:DragDrop.IsDragSource="True" dd:DragDrop.DropHandler="{Binding}" dd:DragDrop.IsDropTarget="True" ItemTemplate="{StaticResource MyImagesItemTemplate}" ItemsSource="{Binding ServersToShow, Mode=TwoWay}" Width="200" Height="319"/>
                     </StackPanel>
                 </Grid>
             </Grid>

@@ -17,10 +17,7 @@
 
 		public string NameRect
 		{
-			get
-			{
-				return nameRect;
-			}
+			get => nameRect;
 			set
 			{
 				nameRect = value;
@@ -31,10 +28,7 @@
 
 		public int Height
 		{
-			get
-			{
-				return height;
-			}
+			get => height;
 
 			set
 			{
