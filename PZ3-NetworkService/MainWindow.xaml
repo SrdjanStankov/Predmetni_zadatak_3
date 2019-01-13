@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PZ3_NetworkService"
         xmlns:views="clr-namespace:PZ3_NetworkService.Views"
         xmlns:viewModel="clr-namespace:PZ3_NetworkService.ViewModel"
         mc:Ignorable="d"
@@ -24,6 +23,9 @@
         <DataTemplate DataType="{x:Type viewModel:NetworViewViewModel}">
             <views:NetworkVeiw/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TutorialViewModel}">
+            <views:TutorialView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,6 +42,7 @@
                 <MenuItem FontSize="16" Header="Izvestaj" Command="{Binding ReportCommand}"/>
                 <MenuItem FontSize="16" Header="Grafik" Command="{Binding DataChartCommand}"/>
                 <MenuItem FontSize="16" Header="Pregled mreze" Command="{Binding NetworkViewCommand}"/>
+                <MenuItem FontSize="16" Header="Prirucnik" Command="{Binding TutorialViewCommand}"/>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">

@@ -70,8 +70,12 @@
     <Compile Include="ViewModel\NetworViewViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
     <Compile Include="ViewModel\NetworkDataViewModel.cs" />
+    <Compile Include="ViewModel\TutorialViewModel.cs" />
     <Compile Include="Views\DataChartView.xaml.cs">
       <DependentUpon>DataChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NetworkDataTutorialView.xaml.cs">
+      <DependentUpon>NetworkDataTutorialView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NetworkDataView.xaml.cs">
       <DependentUpon>NetworkDataView.xaml</DependentUpon>
@@ -81,6 +85,9 @@
     </Compile>
     <Compile Include="Views\ReportView.xaml.cs">
       <DependentUpon>ReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TutorialView.xaml.cs">
+      <DependentUpon>TutorialView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -99,6 +106,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\NetworkDataTutorialView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NetworkDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -108,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TutorialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

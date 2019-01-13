@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\App.xaml
-51702484609
+7-1198535710
 
-23-1414265234
+26-1562877643
 14-1496503453
-MainWindow.xaml;Views\DataChartView.xaml;Views\NetworkDataView.xaml;Views\NetworkVeiw.xaml;Views\ReportView.xaml;
+MainWindow.xaml;Views\DataChartView.xaml;Views\NetworkDataTutorialView.xaml;Views\NetworkDataView.xaml;Views\NetworkVeiw.xaml;Views\ReportView.xaml;Views\TutorialView.xaml;
 
 False
 

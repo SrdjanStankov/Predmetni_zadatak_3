@@ -1,4 +1,6 @@
-﻿namespace PZ3_NetworkService.ViewModel
+﻿using System;
+
+namespace PZ3_NetworkService.ViewModel
 {
 	public class MainWindowViewModel : BindableBase
 	{
@@ -6,6 +8,7 @@
 		public MyICommand NetworkDataCommand { get; set; }
 		public MyICommand DataChartCommand { get; set; }
 		public MyICommand NetworkViewCommand { get; set; }
+		public MyICommand TutorialViewCommand { get; set; }
 
 		private BindableBase currentViewModel;
 
@@ -13,6 +16,7 @@
 		private NetworkDataViewModel networkDataViewModel = new NetworkDataViewModel();
 		private DataChartViewModel dataChartViewModel = new DataChartViewModel();
 		private NetworViewViewModel networViewViewModel = new NetworViewViewModel();
+		private TutorialViewModel tutorialViewModel = new TutorialViewModel();
 
 		public BindableBase CurrentViewModel
 		{
@@ -29,6 +33,12 @@
 			NetworkDataCommand = new MyICommand(OnNetworkData);
 			DataChartCommand = new MyICommand(OnDataChart);
 			NetworkViewCommand = new MyICommand(OnNetworkView);
+			TutorialViewCommand = new MyICommand(OnTutorial);
+		}
+
+		private void OnTutorial()
+		{
+			CurrentViewModel = tutorialViewModel;
 		}
 
 		private void OnNetworkView()
