@@ -26,6 +26,9 @@
         <DataTemplate DataType="{x:Type viewModel:TutorialNetworkDataViewModel}">
             <views:NetworkDataTutorialView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TutorialDataChartViewModel}">
+            <views:TutorialDataChartView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

@@ -91,6 +91,7 @@
     <Compile Include="ViewModel\NetworViewViewModel.cs" />
     <Compile Include="ViewModel\ReportViewModel.cs" />
     <Compile Include="ViewModel\NetworkDataViewModel.cs" />
+    <Compile Include="ViewModel\TutorialDataChartViewModel.cs" />
     <Compile Include="ViewModel\TutorialNetworkDataViewModel.cs" />
     <Compile Include="Views\DataChartView.xaml.cs">
       <DependentUpon>DataChartView.xaml</DependentUpon>
@@ -106,6 +107,9 @@
     </Compile>
     <Compile Include="Views\ReportView.xaml.cs">
       <DependentUpon>ReportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TutorialDataChartView.xaml.cs">
+      <DependentUpon>TutorialDataChartView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TutorialDataChartView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +185,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Pretrazivanje servera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Grafik button.png" />
+    <Resource Include="Images\Grafik buttton2.png" />
+    <Resource Include="Images\Grafik grafik.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
