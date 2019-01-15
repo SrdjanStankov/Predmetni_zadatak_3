@@ -59,3 +59,5 @@ E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\bin\D
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.csproj.CopyComplete
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialDataChartView.g.cs
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialDataChartView.baml
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialReportView.g.cs
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialReportView.baml

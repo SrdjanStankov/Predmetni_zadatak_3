@@ -69,7 +69,7 @@ namespace PZ3_NetworkService.ViewModel
 
 				ServersD[id] = Dropped[id];
 				Dropped.Remove(id);
-				OnPropertyChanged("Valves");
+				OnPropertyChanged("Servers");
 
 				RefreshList();
 
@@ -103,7 +103,7 @@ namespace PZ3_NetworkService.ViewModel
 					{
 						Dropped[draggedItem.Id] = ServersD[draggedItem.Id];
 						ServersD.Remove(draggedItem.Id);
-						OnPropertyChanged("Valves");
+						OnPropertyChanged("Servers");
 						fromList = false;
 					}
 					else

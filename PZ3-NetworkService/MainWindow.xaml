@@ -29,6 +29,9 @@
         <DataTemplate DataType="{x:Type viewModel:TutorialDataChartViewModel}">
             <views:TutorialDataChartView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TutorialReportViewModel}">
+            <views:TutorialReportView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

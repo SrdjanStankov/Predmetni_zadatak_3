@@ -21,6 +21,7 @@ namespace PZ3_NetworkService.ViewModel
 		private NetworViewViewModel networViewViewModel = new NetworViewViewModel();
 		private TutorialNetworkDataViewModel tutorialNetworkDataViewModel = new TutorialNetworkDataViewModel();
 		private TutorialDataChartViewModel tutorialDataChartViewModel = new TutorialDataChartViewModel();
+		private TutorialReportViewModel tutorialReportViewModel = new TutorialReportViewModel();
 
 		public BindableBase CurrentViewModel
 		{
@@ -56,7 +57,7 @@ namespace PZ3_NetworkService.ViewModel
 
 		private void OnTutReport()
 		{
-			throw new NotImplementedException();
+			CurrentViewModel = tutorialReportViewModel;
 		}
 
 		private void OnTutNetwork()
