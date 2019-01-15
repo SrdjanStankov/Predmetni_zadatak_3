@@ -1,51 +1,284 @@
 ﻿<UserControl x:Class="PZ3_NetworkService.Views.NetworkVeiw"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:dd="urn:gong-wpf-dragdrop"
-             xmlns:DnD ="clr-namespace:PZ3_NetworkService.Model"
-             mc:Ignorable="d" 
-             DnD:DropBehavior.PreviewDropCommand="{Binding PreviewDropCommand}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    
-    <UserControl.Resources>
-        <Style TargetType="ListBox">
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Vertical"/>
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-        <DataTemplate x:Key="MyImagesItemTemplate">
-            <Grid Width="100" Height="100">
-                <Image Source="{Binding Path=ImgSrc}"/>
-                <Label Content="{Binding Path=Name}"/>
-            </Grid>
-        </DataTemplate>
-    </UserControl.Resources>
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       xmlns:i1="http://schemas.microsoft.com/expression/2010/interactivity"      
+       mc:Ignorable="d" 
+       d:DesignHeight="400" d:DesignWidth="480">
     <Grid>
-        <Grid Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" >
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="110"/>
+                <ColumnDefinition Width="110"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Width="600">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto"/>
-                    <ColumnDefinition Width="auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
-                    <ListBox Width="200" ItemsSource="{Binding Destination, Mode=TwoWay}" Margin="3" dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"/>
-                </Grid>
-                <Grid Grid.Column="1">
-                    <StackPanel Orientation="Vertical">
-                        <ListBox Margin="3" dd:DragDrop.IsDragSource="True" dd:DragDrop.DropHandler="{Binding}" dd:DragDrop.IsDropTarget="True" ItemTemplate="{StaticResource MyImagesItemTemplate}" ItemsSource="{Binding ServersToShow, Mode=TwoWay}" Width="200" Height="319"/>
-                    </StackPanel>
-                </Grid>
-            </Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="90"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--FirstRow-->
+            <Canvas Margin="3" Grid.Column="0" Background="White" Grid.Row="0" x:Name="dropovanje1" AllowDrop="True" HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100">
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje1}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje1}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje1}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="1" Background="White" Grid.Row="0" x:Name="dropovanje2" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje2}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje2}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje2}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="2" Background="White" Grid.Row="0" x:Name="dropovanje3" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje3}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje3}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje3}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="3" Background="White" Grid.Row="0" x:Name="dropovanje4" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje4}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje4}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje4}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <!--Second row-->
+            <Canvas Margin="3" Grid.Column="0" Background="White" Grid.Row="1" x:Name="dropovanje5" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje5}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje5}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje5}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="1" Background="White" Grid.Row="1" x:Name="dropovanje6" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje6}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje6}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje6}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="2" Background="White" Grid.Row="1" x:Name="dropovanje7" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje7}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje7}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje7}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="3" Background="White" Grid.Row="1" x:Name="dropovanje8" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje8}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje8}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje8}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <!--Third row-->
+            <Canvas Margin="3" Grid.Column="0" Background="White" Grid.Row="2" x:Name="dropovanje9" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje9}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje9}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje9}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="1" Background="White" Grid.Row="2" x:Name="dropovanje10" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje10}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje10}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje10}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="2" Background="White" Grid.Row="2" x:Name="dropovanje11" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje11}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje11}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje11}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="3" Background="White" Grid.Row="2" x:Name="dropovanje12" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje12}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje12}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje12}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <!--Fourth row-->
+            <Canvas Margin="3" Grid.Column="0" Background="White" Grid.Row="3" x:Name="dropovanje13" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje13}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje13}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje13}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="1" Background="White" Grid.Row="3" x:Name="dropovanje14" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje14}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje14}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje14}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="2" Background="White" Grid.Row="3" x:Name="dropovanje15" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje15}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje15}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje15}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
+            <Canvas Margin="3" Grid.Column="3" Background="White" Grid.Row="3" x:Name="dropovanje16" AllowDrop="True"  HorizontalAlignment="Center" Height="80" VerticalAlignment="Top" Width="100" >
+                <i1:Interaction.Triggers>
+                    <i1:EventTrigger EventName="Drop">
+                        <i1:InvokeCommandAction Command="{Binding DCommand}" CommandParameter="{Binding ElementName=dropovanje16}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonUp">
+                        <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                    </i1:EventTrigger>
+                    <i1:EventTrigger EventName="MouseLeftButtonDown">
+                        <i1:InvokeCommandAction Command="{Binding CanSel}" CommandParameter="{Binding ElementName=dropovanje16}"/>
+                    </i1:EventTrigger>
+                </i1:Interaction.Triggers>
+                <TextBlock Text="Dostupno" Width="100" Canvas.Left="0" Height="20" TextWrapping="Wrap" TextAlignment="Center" FontSize="16"/>
+                <Button Content="X" Command="{Binding FreeCanvas}" CommandParameter="{Binding ElementName=dropovanje16}" Height="20" VerticalAlignment="Bottom" Width="20" Background="Transparent" Canvas.Top="60" BorderThickness="0" Canvas.Left="80"/>
+            </Canvas>
         </Grid>
+        <ListView x:Name="listView1" FontFamily="Bahnschrift SemiBold" HorizontalAlignment="Left" Height="380" ItemsSource="{Binding Servers}" DisplayMemberPath="Name" VerticalAlignment="Top" SelectedItem="{Binding SelectedObject}" Width="100" Grid.Column="1" >
+            <i1:Interaction.Triggers>
+                <i1:EventTrigger EventName="MouseLeftButtonUp">
+                    <i1:InvokeCommandAction Command="{Binding LeftMBUp}"/>
+                </i1:EventTrigger>
+                <i1:EventTrigger EventName="SelectionChanged">
+                    <i1:InvokeCommandAction Command="{Binding SELCHANGE}" CommandParameter="{Binding ElementName=listView1}"/>
+                </i1:EventTrigger>
+            </i1:Interaction.Triggers>
+        </ListView>
     </Grid>
 </UserControl>

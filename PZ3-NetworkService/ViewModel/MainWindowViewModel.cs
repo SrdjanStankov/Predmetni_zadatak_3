@@ -8,7 +8,10 @@ namespace PZ3_NetworkService.ViewModel
 		public MyICommand NetworkDataCommand { get; set; }
 		public MyICommand DataChartCommand { get; set; }
 		public MyICommand NetworkViewCommand { get; set; }
-		public MyICommand TutorialViewCommand { get; set; }
+		public MyICommand TutorialNetworkDataCommand { get; set; }
+		public MyICommand TutorialReportCommand { get; set; }
+		public MyICommand TutorialGraphCommand { get; set; }
+		public MyICommand TutorialNetworkViewCommand { get; set; }
 
 		private BindableBase currentViewModel;
 
@@ -16,7 +19,7 @@ namespace PZ3_NetworkService.ViewModel
 		private NetworkDataViewModel networkDataViewModel = new NetworkDataViewModel();
 		private DataChartViewModel dataChartViewModel = new DataChartViewModel();
 		private NetworViewViewModel networViewViewModel = new NetworViewViewModel();
-		private TutorialViewModel tutorialViewModel = new TutorialViewModel();
+		private TutorialNetworkDataViewModel tutorialNetworkDataViewModel = new TutorialNetworkDataViewModel();
 
 		public BindableBase CurrentViewModel
 		{
@@ -33,12 +36,31 @@ namespace PZ3_NetworkService.ViewModel
 			NetworkDataCommand = new MyICommand(OnNetworkData);
 			DataChartCommand = new MyICommand(OnDataChart);
 			NetworkViewCommand = new MyICommand(OnNetworkView);
-			TutorialViewCommand = new MyICommand(OnTutorial);
+			TutorialNetworkDataCommand = new MyICommand(OnTutNetwork);
+			TutorialReportCommand = new MyICommand(OnTutReport);
+			TutorialGraphCommand = new MyICommand(OnTutGraph);
+			TutorialNetworkViewCommand = new MyICommand(OnTutNetworkView);
 		}
 
-		private void OnTutorial()
+		private void OnTutNetworkView()
 		{
-			CurrentViewModel = tutorialViewModel;
+
+			throw new NotImplementedException();
+		}
+
+		private void OnTutGraph()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void OnTutReport()
+		{
+			throw new NotImplementedException();
+		}
+
+		private void OnTutNetwork()
+		{
+			CurrentViewModel = tutorialNetworkDataViewModel;
 		}
 
 		private void OnNetworkView()

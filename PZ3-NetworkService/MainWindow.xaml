@@ -6,7 +6,7 @@
         xmlns:views="clr-namespace:PZ3_NetworkService.Views"
         xmlns:viewModel="clr-namespace:PZ3_NetworkService.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="800">
+        Title="MainWindow" Height="520" Width="800">
     <Window.DataContext>
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>
@@ -23,8 +23,8 @@
         <DataTemplate DataType="{x:Type viewModel:NetworViewViewModel}">
             <views:NetworkVeiw/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:TutorialViewModel}">
-            <views:TutorialView/>
+        <DataTemplate DataType="{x:Type viewModel:TutorialNetworkDataViewModel}">
+            <views:NetworkDataTutorialView/>
         </DataTemplate>
     </Window.Resources>
     <Grid>
@@ -42,7 +42,12 @@
                 <MenuItem FontSize="16" Header="Izvestaj" Command="{Binding ReportCommand}"/>
                 <MenuItem FontSize="16" Header="Grafik" Command="{Binding DataChartCommand}"/>
                 <MenuItem FontSize="16" Header="Pregled mreze" Command="{Binding NetworkViewCommand}"/>
-                <MenuItem FontSize="16" Header="Prirucnik" Command="{Binding TutorialViewCommand}"/>
+                <MenuItem FontSize="16" Header="Prirucnik" Command="{Binding TutorialViewCommand}">
+                    <MenuItem FontSize="16" Header="Mrezni podaci" Command="{Binding TutorialNetworkDataCommand}"/>
+                    <MenuItem FontSize="16" Header="Izvestaj" Command="{Binding TutorialReportCommand}"/>
+                    <MenuItem FontSize="16" Header="Grafik" Command="{Binding TutorialGraphCommand}"/>
+                    <MenuItem FontSize="16" Header="Pregled mreze" Command="{Binding TutorialNetworkViewCommand}"/>
+                </MenuItem>
             </Menu>
         </DockPanel>
         <Grid Grid.Row="1" Grid.ColumnSpan="2">
