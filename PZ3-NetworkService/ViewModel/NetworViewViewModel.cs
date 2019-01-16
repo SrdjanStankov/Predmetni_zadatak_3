@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -14,22 +15,45 @@ namespace PZ3_NetworkService.ViewModel
 	{
 		public static Dictionary<int, Server> ServersD { get; set; } = new Dictionary<int, Server>();
 		public static Dictionary<int, Server> Dropped { get; set; } = new Dictionary<int, Server>();
-
+		public static Dictionary<int, Canvas> CanvasesData { get; set; } = new Dictionary<int, Canvas>();
+		public static Dictionary<string, Server> Canvases { get; set; } = new Dictionary<string, Server>();
 		public ObservableCollection<Server> Servers { get; set; } = new ObservableCollection<Server>();
-
-		public static Server draggedItem = null;
-		private bool dragging = false;
-		private bool fromList = false;
 
 		public MyICommand LeftMBUp { get; set; }
 		public MyICommand<ListView> SELCHANGE { get; set; }
 		public MyICommand<Canvas> DCommand { get; set; }
+		public MyICommand<Canvas> LCommand { get; set; }
+		public MyICommand<Canvas> FreeCanvas { get; set; }
+		public MyICommand<Canvas> CanSel { get; set; }
 
 		private Server selectedObject;
 		public Server SelectedObject { get => selectedObject; set => selectedObject = value; }
 
-		public MyICommand<Canvas> FreeCanvas { get; set; }
-		public MyICommand<Canvas> CanSel { get; set; }
+		public static Server draggedItem = null;
+		private bool dragging = false;
+		private bool fromList = false;
+		private Canvas CanvasToEmpty;
+
+		public void OnLoad(Canvas c)
+		{
+			if (Canvases.ContainsKey(c.Name))
+			{
+				BitmapImage logo = new BitmapImage();
+				logo.BeginInit();
+				logo.UriSource = new Uri(Canvases[c.Name].ImgSrc);
+				logo.EndInit();
+				c.Background = new ImageBrush(logo);
+				((TextBlock) c.Children[0]).Text = Canvases[c.Name].Id.ToString() + "." + Canvases[c.Name].Name;
+				((TextBlock) c.Children[0]).Foreground = Brushes.Black;
+
+				ChangeStateBar(c);
+
+				if (!c.Resources.Contains("taken"))
+				{
+					c.Resources.Add("taken", true);
+				}
+			}
+		}
 
 		private void RefreshList()
 		{
@@ -38,25 +62,111 @@ namespace PZ3_NetworkService.ViewModel
 			{
 				Servers.Add(d);
 			}
+			OnPropertyChanged("Servers");
+		}
+
+		private void StateChanged(State state, int id)
+		{
+			Application.Current.Dispatcher.Invoke(() =>
+			{
+				foreach (var item in StaticClass.Servers)
+				{
+					if (CanvasesData.ContainsKey(item.Id))
+					{
+						ChangeStateBar(CanvasesData[item.Id]);
+					}
+				}
+
+			});
+		}
+
+		private void ChangeStateBar(Canvas c)
+		{
+			foreach (var item in StaticClass.Servers)
+			{
+				if (Canvases.ContainsKey(c.Name) && Canvases[c.Name].Id == item.Id)
+				{
+					Switch(c, item.State);
+				}
+			}
+		}
+
+		private void Switch(Canvas c, State s)
+		{
+			switch (s)
+			{
+				case State.NORMAL:
+				((TextBlock) c.Children[0]).Background = (SolidColorBrush) (new BrushConverter().ConvertFrom("#7fff00"));
+				break;
+				case State.HIGH:
+				((TextBlock) c.Children[0]).Background = (SolidColorBrush) (new BrushConverter().ConvertFrom("#ff4500"));
+				break;
+				case State.LOW:
+				((TextBlock) c.Children[0]).Background = (SolidColorBrush) (new BrushConverter().ConvertFrom("#ffa500"));
+				break;
+				default:
+				break;
+			}
+			((TextBlock) c.Children[0]).Foreground = Brushes.Black;
+		}
+
+		private void ColorUpdate()
+		{
+			new Thread(() =>
+			{
+				Thread.CurrentThread.IsBackground = true;
+
+				StateChanged(State.LOW, 0);
+				Thread.Sleep(500);
+
+			}).Start();
 		}
 
 		public NetworViewViewModel()
 		{
-			RefreshList();
+			StaticClass.StateChange += StateChanged;
+			StaticClass.ObjectAdded += UpdateNonDroppedItems;
+			StaticClass.ObjectDeleted += UpdateDroppedItems;
+
 			LeftMBUp = new MyICommand(OnMouseLeftButtonUp);
 			SELCHANGE = new MyICommand<ListView>(SelectionChange);
 			DCommand = new MyICommand<Canvas>(Drop);
-
+			LCommand = new MyICommand<Canvas>(OnLoad);
 			FreeCanvas = new MyICommand<Canvas>(OnRunFreeCanvas);
 			CanSel = new MyICommand<Canvas>(CanvasSelect);
 
-			Canvas c = new Canvas();
+			UpdateNonDroppedItems(0);
+		}
 
+		private void UpdateNonDroppedItems(int id)
+		{
+			ServersD.Clear();
 			foreach (var item in StaticClass.Servers)
 			{
 				ServersD.Add(item.Id, item);
 			}
 			RefreshList();
+		}
+
+		private void UpdateDroppedItems(int id)
+		{
+			if (Dropped.ContainsKey(id))
+			{
+				int temp = Dropped[id].Id;
+
+				foreach (var item in Canvases)
+				{
+					if (item.Value.Id == temp)
+					{
+						Console.WriteLine("Canvas removed");
+						Canvases.Remove(item.Key);
+						CanvasesData.Remove(item.Value.Id);
+						break;
+					}
+				}
+				Dropped.Remove(id);
+			}
+			UpdateNonDroppedItems(id);
 		}
 
 		private void OnRunFreeCanvas(Canvas canvas)
@@ -69,6 +179,8 @@ namespace PZ3_NetworkService.ViewModel
 
 				ServersD[id] = Dropped[id];
 				Dropped.Remove(id);
+				Canvases.Remove(canvas.Name);
+				CanvasesData.Remove(id);
 				OnPropertyChanged("Servers");
 
 				RefreshList();
@@ -91,11 +203,20 @@ namespace PZ3_NetworkService.ViewModel
 					logo.BeginInit();
 					logo.UriSource = new Uri(draggedItem.ImgSrc, UriKind.Absolute);
 					logo.EndInit();
+
+					if (CanvasToEmpty != null)
+					{
+						if (Canvases.ContainsKey(CanvasToEmpty.Name))
+						{
+							Canvases.Remove(CanvasToEmpty.Name);
+							CanvasesData.Remove(draggedItem.Id);
+						}
+					}
+
 					c.Background = new ImageBrush(logo);
-					ViewImagesStorage.Canvases[c.Name] = draggedItem.ImgSrc;
 					((TextBlock) c.Children[0]).Text = draggedItem.Id + "." + draggedItem.Name;
 					((TextBlock) c.Children[0]).Foreground = Brushes.Black;
-					((TextBlock) c.Children[0]).Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#ffffff");//("#ffff40"));
+					((TextBlock) c.Children[0]).Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#ffffff");
 
 					c.Resources.Add("taken", true);
 
@@ -112,13 +233,21 @@ namespace PZ3_NetworkService.ViewModel
 					}
 				}
 				RefreshList();
+
+				CanvasesData.Add(draggedItem.Id, c);
+				Canvases[c.Name] = draggedItem;
+				StateChanged(State.LOW, 0);
+
 				dragging = false;
+				draggedItem = null;
 			}
 		}
 
 		private void EmptyCanvas()
 		{
 			CanvasToEmpty.Background = Brushes.White;
+			Canvases.Remove(CanvasToEmpty.Name);
+			CanvasesData.Remove(draggedItem.Id);
 			((TextBlock) CanvasToEmpty.Children[0]).Text = "Dostupno";
 			((TextBlock) CanvasToEmpty.Children[0]).Foreground = Brushes.Black;
 			((TextBlock) CanvasToEmpty.Children[0]).Background = Brushes.White;
@@ -130,6 +259,7 @@ namespace PZ3_NetworkService.ViewModel
 			draggedItem = null;
 			selectedObject = null;
 			dragging = false;
+			CanvasToEmpty = null;
 		}
 
 		public void SelectionChange(ListView o)
@@ -144,8 +274,6 @@ namespace PZ3_NetworkService.ViewModel
 				DragDrop.DoDragDrop(o, draggedItem, DragDropEffects.Copy | DragDropEffects.Move);
 			}
 		}
-
-		private Canvas CanvasToEmpty;
 
 		private void CanvasSelect(Canvas canvas)
 		{

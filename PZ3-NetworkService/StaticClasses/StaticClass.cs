@@ -4,8 +4,16 @@ using PZ3_NetworkService.Model;
 
 namespace PZ3_NetworkService.StaticClasses
 {
+	public delegate void StaticClassChangeHandler(int id);
+	public delegate void ServersStateChangeHanler(State state, int id);
+
 	public class StaticClass
 	{
+		public static event StaticClassChangeHandler ObjectAdded;
+		public static event StaticClassChangeHandler ObjectDeleted;
+		public static event StaticClassChangeHandler ValueChanged;
+		public static event ServersStateChangeHanler StateChange;
+
 		private const int IpAddressNum = 9;
 
 		public static ObservableCollection<Server> Servers { get; set; }
@@ -44,6 +52,29 @@ namespace PZ3_NetworkService.StaticClasses
 				ip = "";
 			}
 			IpAddresses = temp;
+		}
+
+		public static void ChangeMade(int id, Operation operation)
+		{
+			switch (operation)
+			{
+				case Operation.ADD:
+				ObjectAdded?.Invoke(id);
+				break;
+				case Operation.REMOVE:
+				ObjectDeleted?.Invoke(id);
+				break;
+				case Operation.VALUE_CHANGE:
+				ValueChanged?.Invoke(id);
+				break;
+				default:
+				break;
+			}
+		}
+
+		public static void StateChanged(State state, int id)
+		{
+			StateChange?.Invoke(state, id);
 		}
 	}
 }

@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="16" Foreground="Aqua" Text="Prikazivanje grafika se vrsi na dugme:                 "/>
+                <TextBlock FontSize="16" Text="Prikazivanje grafika se vrsi na dugme:                 "/>
                 <Image Width="200" HorizontalAlignment="Right">
                     <Image.Source>
                         <BitmapImage UriSource="/Images/Grafik button.png"/>
@@ -17,7 +17,7 @@
                 </Image>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="16" Foreground="Aqua" Text="Sakrivanje grafika se vrsi na dugme                    "/>
+                <TextBlock FontSize="16" Text="Sakrivanje grafika se vrsi na dugme                    "/>
                 <Image Width="200">
                     <Image.Source>
                         <BitmapImage UriSource="/Images/Grafik buttton2.png"/>
@@ -25,7 +25,7 @@
                 </Image>
             </StackPanel>
             <StackPanel Orientation="Vertical">
-                <TextBlock FontSize="16" Foreground="Aqua" TextWrapping="WrapWithOverflow" Text="Na grafiku su prikazani nazivi servera sa svojim vrednostima.&#x0a;Optimalno je da vrednosti budu izmedju crvenih linija. Odnosno izmedju 45% i 75%."/>
+                <TextBlock FontSize="16" TextWrapping="WrapWithOverflow" Text="Na grafiku su prikazani nazivi servera sa svojim vrednostima.&#x0a;Optimalno je da vrednosti budu izmedju crvenih linija. Odnosno izmedju 45% i 75%."/>
                 <Image Width="500">
                     <Image.Source>
                         <BitmapImage UriSource="/Images/Grafik grafik.png"/>

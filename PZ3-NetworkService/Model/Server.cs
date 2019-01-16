@@ -7,6 +7,7 @@
 		private string ipAddress;
 		private string imgSrc;
 		private double value;
+		private State state;
 
 		public Server() { }
 
@@ -17,6 +18,16 @@
 			ipAddress = obj.ipAddress;
 			imgSrc = obj.imgSrc;
 			value = obj.value;
+		}
+
+		public State State
+		{
+			get => state;
+			set
+			{
+				state = value;
+				OnPropertyChanged("State");
+			}
 		}
 
 		public int Id
@@ -84,6 +95,7 @@
 				if (this.value != value)
 				{
 					this.value = value;
+					UpdateStete();
 					OnPropertyChanged("Value");
 				}
 			}
@@ -114,6 +126,25 @@
 			if (id <= 0)
 			{
 				ValidationErrors["Id"] = "ID mora biti veci od 0";
+			}
+		}
+
+		void UpdateStete()
+		{
+			if (value >= 75)
+			{
+				State = State.HIGH;
+				StaticClasses.StaticClass.StateChanged(State.HIGH, id);
+			}
+			else if (value <= 45)
+			{
+				State = State.LOW;
+				StaticClasses.StaticClass.StateChanged(State.LOW, id);
+			}
+			else
+			{
+				State = State.NORMAL;
+				StaticClasses.StaticClass.StateChanged(State.NORMAL, id);
 			}
 		}
 	}

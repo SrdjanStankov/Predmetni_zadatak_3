@@ -80,6 +80,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\MyRect.cs" />
+    <Compile Include="Model\State.cs" />
     <Compile Include="Model\ViewImagesStorage.cs" />
     <Compile Include="MyICommand.cs" />
     <Compile Include="NetworkManagment.cs" />
@@ -93,12 +94,13 @@
     <Compile Include="ViewModel\NetworkDataViewModel.cs" />
     <Compile Include="ViewModel\TutorialDataChartViewModel.cs" />
     <Compile Include="ViewModel\TutorialNetworkDataViewModel.cs" />
+    <Compile Include="ViewModel\TutorialNetworkViewViewModel.cs" />
     <Compile Include="ViewModel\TutorialReportViewModel.cs" />
     <Compile Include="Views\DataChartView.xaml.cs">
       <DependentUpon>DataChartView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NetworkDataTutorialView.xaml.cs">
-      <DependentUpon>NetworkDataTutorialView.xaml</DependentUpon>
+    <Compile Include="Views\TutorialNetworkDataView.xaml.cs">
+      <DependentUpon>TutorialNetworkDataView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NetworkDataView.xaml.cs">
       <DependentUpon>NetworkDataView.xaml</DependentUpon>
@@ -111,6 +113,9 @@
     </Compile>
     <Compile Include="Views\TutorialDataChartView.xaml.cs">
       <DependentUpon>TutorialDataChartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TutorialNetworkViewView.xaml.cs">
+      <DependentUpon>TutorialNetworkViewView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TutorialReportView.xaml.cs">
       <DependentUpon>TutorialReportView.xaml</DependentUpon>
@@ -132,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NetworkDataTutorialView.xaml">
+    <Page Include="Views\TutorialNetworkDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -149,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TutorialDataChartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TutorialNetworkViewView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,6 +210,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Izvestaj.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pregled lista.png" />
+    <Resource Include="Images\pregled popunjeno crveno.png" />
+    <Resource Include="Images\pregled prazno.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pregled popunjeno zeleno.png" />
+    <Resource Include="Images\pregled popunjeno zuto.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

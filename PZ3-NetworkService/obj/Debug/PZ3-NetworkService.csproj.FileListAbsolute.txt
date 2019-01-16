@@ -46,8 +46,6 @@ E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\D
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.csproj.CoreCompileInputs.cache
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.exe
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\PZ3-NetworkService.pdb
-E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\NetworkDataTutorialView.g.cs
-E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\NetworkDataTutorialView.baml
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\bin\Debug\Microsoft.Expression.Controls.dll
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\bin\Debug\Microsoft.Expression.Drawing.dll
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\bin\Debug\Microsoft.Expression.Effects.dll
@@ -61,3 +59,7 @@ E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\D
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialDataChartView.baml
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialReportView.g.cs
 E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialReportView.baml
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialNetworkDataView.g.cs
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialNetworkViewView.g.cs
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialNetworkDataView.baml
+E:\SRKI\FTN\HCI\Predmetni_zadatak_3\Predmetni_zadatak_3\PZ3-NetworkService\obj\Debug\Views\TutorialNetworkViewView.baml

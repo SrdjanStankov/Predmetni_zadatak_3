@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="PZ3_NetworkService.Views.NetworkDataTutorialView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PZ3_NetworkService.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="850">
+    <Grid>
+        <StackPanel>
+            <TextBlock TextWrapping="WrapWithOverflow" FontSize="16" Text="Unos novih servera:&#x0a;      U prvo polje se unosi ID koji mora biti jedinstven broj i veci od 0.&#x0a;      U drugo polje se upisuje naziv servera. Naziv moze biti kombinacija slova i brojeva.&#x0a;      U trecem polju se bira IP adresa na kojoj je server.&#x0a;      Ukoliko ste zadovoljni sa unetim, klikom na dugme Dodaj novi server se dodaje u listu."/>
+            <TextBlock TextWrapping="WrapWithOverflow" FontSize="16" Text="Brisanje servera:&#x0a;      Server koji se brise mora prvo biti obelezen.&#x0a;      Brisanje se izvrsava na dugme Obrisi."/>
+            <Image Width="700" HorizontalAlignment="Left">
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/Dodavanje servera.png"/>
+                </Image.Source>
+            </Image>
+            <TextBlock TextWrapping="WrapWithOverflow" FontSize="16" Text="Filtriranje servera vrsi se:&#x0a;      1. Izborom Ip adrese. Biranjem Ip adrese 'NaN' filter nece uzimati u obzir ip adresu prilikom filtriranja.&#x0a;      2. Izborom vrednosti ID-ja.&#x0a;      3. Jednom od opcija &lt;,&gt; ili 'NaN'. Prilikom odabira 'Nan' opcije uneti ID za pretrazivanje se nece uzimati u obzir prilikom filtriranja."/>
+            <Image Width="700" HorizontalAlignment="Left">
+                <Image.Source>
+                    <BitmapImage UriSource="/Images/Pretrazivanje servera.png"/>
+                </Image.Source>
+            </Image>
+        </StackPanel>
+    </Grid>
+</UserControl>

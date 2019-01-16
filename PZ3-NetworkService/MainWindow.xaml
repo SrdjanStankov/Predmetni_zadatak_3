@@ -32,6 +32,9 @@
         <DataTemplate DataType="{x:Type viewModel:TutorialReportViewModel}">
             <views:TutorialReportView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TutorialNetworkViewViewModel}">
+            <views:TutorialNetworkViewView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

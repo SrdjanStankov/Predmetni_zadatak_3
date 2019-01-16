@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/izvestaj.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/pregled%20popunjeno%20zeleno.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/pregled%20popunjeno%20zuto.png")]
 
 
