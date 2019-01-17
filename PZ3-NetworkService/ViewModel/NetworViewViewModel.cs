@@ -143,7 +143,10 @@ namespace PZ3_NetworkService.ViewModel
 			ServersD.Clear();
 			foreach (var item in StaticClass.Servers)
 			{
-				ServersD.Add(item.Id, item);
+				if (!Dropped.ContainsKey(item.Id))
+				{
+					ServersD.Add(item.Id, item);
+				}
 			}
 			RefreshList();
 		}
@@ -204,7 +207,7 @@ namespace PZ3_NetworkService.ViewModel
 					logo.UriSource = new Uri(draggedItem.ImgSrc, UriKind.Absolute);
 					logo.EndInit();
 
-					if (CanvasToEmpty != null)
+					if (fromList == false)
 					{
 						if (Canvases.ContainsKey(CanvasToEmpty.Name))
 						{
@@ -252,6 +255,7 @@ namespace PZ3_NetworkService.ViewModel
 			((TextBlock) CanvasToEmpty.Children[0]).Foreground = Brushes.Black;
 			((TextBlock) CanvasToEmpty.Children[0]).Background = Brushes.White;
 			CanvasToEmpty.Resources.Remove("taken");
+			CanvasToEmpty = null;
 		}
 
 		private void OnMouseLeftButtonUp()
@@ -289,6 +293,7 @@ namespace PZ3_NetworkService.ViewModel
 				{
 					fromList = false;
 					dragging = true;
+					fromList = false;
 					CanvasToEmpty = canvas;
 					DragDrop.DoDragDrop(canvas, draggedItem, DragDropEffects.Copy | DragDropEffects.Move);
 				}

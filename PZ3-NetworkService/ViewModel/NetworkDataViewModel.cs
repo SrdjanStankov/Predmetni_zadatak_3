@@ -74,6 +74,7 @@ namespace PZ3_NetworkService.ViewModel
 
 			if (filterServer.IpAddress == "NaN" && NaN)
 			{
+				ServersToShow = finded;
 				return;
 			}
 
@@ -138,9 +139,9 @@ namespace PZ3_NetworkService.ViewModel
 		}
 
 		public ObservableCollection<string> IpAddresses => new ObservableCollection<string>(StaticClass.IpAddresses)
-				{
-					"NaN"
-				};
+		{
+			"NaN"
+		};
 
 		public Server FilterServer
 		{
@@ -160,6 +161,7 @@ namespace PZ3_NetworkService.ViewModel
 				int idx = StaticClass.Servers.IndexOf(selectedServer);
 				StaticClass.Servers.RemoveAt(idx);
 				StaticClass.Rectangles.RemoveAt(idx);
+				StaticClass.ChangeMade(selectedServer.Id, Operation.REMOVE);
 			}
 		}
 
@@ -172,6 +174,7 @@ namespace PZ3_NetworkService.ViewModel
 				{
 					StaticClass.Servers.Add(new Server(currentServer));
 					StaticClass.Rectangles.Add(new MyRect(currentServer.Name));
+					StaticClass.ChangeMade(currentServer.Id, Operation.ADD);
 				}
 			}
 		}

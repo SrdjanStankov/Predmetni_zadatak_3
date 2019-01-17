@@ -127,6 +127,15 @@
 			{
 				ValidationErrors["Id"] = "ID mora biti veci od 0";
 			}
+
+			foreach (var item in StaticClasses.StaticClass.Servers)
+			{
+				if (item.Id == id)
+				{
+					ValidationErrors["Id"] = "ID vec postoji";
+					return;
+				}
+			}
 		}
 
 		void UpdateStete()

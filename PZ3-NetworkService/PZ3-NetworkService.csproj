@@ -79,12 +79,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\MyRect.cs" />
-    <Compile Include="Model\State.cs" />
-    <Compile Include="Model\ViewImagesStorage.cs" />
+    <Compile Include="RandomClasses\MyRect.cs" />
+    <Compile Include="RandomClasses\State.cs" />
     <Compile Include="MyICommand.cs" />
     <Compile Include="NetworkManagment.cs" />
-    <Compile Include="StaticClasses\StaticClass.cs" />
+    <Compile Include="RandomClasses\StaticClass.cs" />
     <Compile Include="ValidationBase.cs" />
     <Compile Include="ValidationErrors.cs" />
     <Compile Include="ViewModel\DataChartViewModel.cs" />
