@@ -1,160 +1,160 @@
 ﻿namespace PZ3_NetworkService.Model
 {
-	public class Server : ValidationBase
-	{
-		private int id;
-		private string name;
-		private string ipAddress;
-		private string imgSrc;
-		private double value;
-		private State state;
+    public class Server : ValidationBase
+    {
+        private int id;
+        private string name;
+        private string ipAddress;
+        private string imgSrc;
+        private double value;
+        private State state;
 
-		public Server() { }
+        public Server() { }
 
-		public Server(Server obj)
-		{
-			id = obj.id;
-			name = obj.name;
-			ipAddress = obj.ipAddress;
-			imgSrc = obj.imgSrc;
-			value = obj.value;
-		}
+        public Server(Server obj)
+        {
+            id = obj.id;
+            name = obj.name;
+            ipAddress = obj.ipAddress;
+            imgSrc = obj.imgSrc;
+            value = obj.value;
+        }
 
-		public State State
-		{
-			get => state;
-			set
-			{
-				state = value;
-				OnPropertyChanged("State");
-			}
-		}
+        public State State
+        {
+            get => state;
+            set
+            {
+                state = value;
+                OnPropertyChanged("State");
+            }
+        }
 
-		public int Id
-		{
-			get => id;
+        public int Id
+        {
+            get => id;
 
-			set
-			{
-				if (id != value)
-				{
-					id = value;
-					OnPropertyChanged("Id");
-				}
-			}
-		}
+            set
+            {
+                if (id != value)
+                {
+                    id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
 
-		public string Name
-		{
-			get => name;
+        public string Name
+        {
+            get => name;
 
-			set
-			{
-				if (name != value)
-				{
-					name = value;
-					OnPropertyChanged("Name");
-				}
-			}
-		}
+            set
+            {
+                if (name != value)
+                {
+                    name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
 
-		public string IpAddress
-		{
-			get => ipAddress;
+        public string IpAddress
+        {
+            get => ipAddress;
 
-			set
-			{
-				if (ipAddress != value)
-				{
-					ipAddress = value;
-					OnPropertyChanged("IpAddress");
-				}
-			}
-		}
+            set
+            {
+                if (ipAddress != value)
+                {
+                    ipAddress = value;
+                    OnPropertyChanged("IpAddress");
+                }
+            }
+        }
 
-		public string ImgSrc
-		{
-			get => imgSrc;
+        public string ImgSrc
+        {
+            get => imgSrc;
 
-			set
-			{
-				if (imgSrc != value)
-				{
-					imgSrc = value;
-					OnPropertyChanged("ImgSrc");
-				}
-			}
-		}
+            set
+            {
+                if (imgSrc != value)
+                {
+                    imgSrc = value;
+                    OnPropertyChanged("ImgSrc");
+                }
+            }
+        }
 
-		public double Value
-		{
-			get => value;
+        public double Value
+        {
+            get => value;
 
-			set
-			{
-				if (this.value != value)
-				{
-					this.value = value;
-					UpdateStete();
-					OnPropertyChanged("Value");
-				}
-			}
-		}
+            set
+            {
+                if (this.value != value)
+                {
+                    this.value = value;
+                    UpdateStete();
+                    OnPropertyChanged("Value");
+                }
+            }
+        }
 
-		public override string ToString()
-		{
-			return Name;
-		}
+        public override string ToString()
+        {
+            return Name;
+        }
 
-		protected override void ValidateSelf()
-		{
-			if (string.IsNullOrWhiteSpace(imgSrc))
-			{
-				ValidationErrors["ImgSrc"] = "Slika nedostaje.";
-			}
+        protected override void ValidateSelf()
+        {
+            if (string.IsNullOrWhiteSpace(imgSrc))
+            {
+                ValidationErrors["ImgSrc"] = "Slika nedostaje.";
+            }
 
-			if (string.IsNullOrWhiteSpace(ipAddress))
-			{
-				ValidationErrors["IpAddress"] = "IP addresa nedostaje";
-			}
+            if (string.IsNullOrWhiteSpace(ipAddress))
+            {
+                ValidationErrors["IpAddress"] = "IP addresa nedostaje";
+            }
 
-			if (string.IsNullOrWhiteSpace(name))
-			{
-				ValidationErrors["Name"] = "Ime nedostaje";
-			}
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                ValidationErrors["Name"] = "Ime nedostaje";
+            }
 
-			if (id <= 0)
-			{
-				ValidationErrors["Id"] = "ID mora biti veci od 0";
-			}
+            if (id <= 0)
+            {
+                ValidationErrors["Id"] = "ID mora biti veci od 0";
+            }
 
-			foreach (var item in StaticClasses.StaticClass.Servers)
-			{
-				if (item.Id == id)
-				{
-					ValidationErrors["Id"] = "ID vec postoji";
-					return;
-				}
-			}
-		}
+            foreach (var item in StaticClasses.StaticClass.Servers)
+            {
+                if (item.Id == id)
+                {
+                    ValidationErrors["Id"] = "ID vec postoji";
+                    return;
+                }
+            }
+        }
 
-		void UpdateStete()
-		{
-			if (value >= 75)
-			{
-				State = State.HIGH;
-				StaticClasses.StaticClass.StateChanged(State.HIGH, id);
-			}
-			else if (value <= 45)
-			{
-				State = State.LOW;
-				StaticClasses.StaticClass.StateChanged(State.LOW, id);
-			}
-			else
-			{
-				State = State.NORMAL;
-				StaticClasses.StaticClass.StateChanged(State.NORMAL, id);
-			}
-		}
-	}
+        private void UpdateStete()
+        {
+            if (value >= 75)
+            {
+                State = State.HIGH;
+                StaticClasses.StaticClass.StateChanged(State.HIGH, id);
+            }
+            else if (value <= 45)
+            {
+                State = State.LOW;
+                StaticClasses.StaticClass.StateChanged(State.LOW, id);
+            }
+            else
+            {
+                State = State.NORMAL;
+                StaticClasses.StaticClass.StateChanged(State.NORMAL, id);
+            }
+        }
+    }
 }

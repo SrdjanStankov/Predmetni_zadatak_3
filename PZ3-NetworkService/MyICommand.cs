@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace PZ3_NetworkService
 {
     public class MyICommand : ICommand
     {
-        Action _TargetExecuteMethod;
-        Func<bool> _TargetCanExecuteMethod;
+        private Action _TargetExecuteMethod;
+        private Func<bool> _TargetCanExecuteMethod;
 
         public MyICommand(Action executeMethod)
         {
@@ -55,50 +51,49 @@ namespace PZ3_NetworkService
         }
     }
 
-	public class MyICommand<T> : ICommand
-	{
+    public class MyICommand<T> : ICommand
+    {
+        private Action<T> _TargetExecuteMethod;
+        private Func<T, bool> _TargetCanExecuteMethod;
 
-		Action<T> _TargetExecuteMethod;
-		Func<T, bool> _TargetCanExecuteMethod;
+        public MyICommand(Action<T> executeMethod)
+        {
+            _TargetExecuteMethod = executeMethod;
+        }
 
-		public MyICommand(Action<T> executeMethod)
-		{
-			_TargetExecuteMethod = executeMethod;
-		}
+        public MyICommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
+        {
+            _TargetExecuteMethod = executeMethod;
+            _TargetCanExecuteMethod = canExecuteMethod;
+        }
 
-		public MyICommand(Action<T> executeMethod, Func<T, bool> canExecuteMethod)
-		{
-			_TargetExecuteMethod = executeMethod;
-			_TargetCanExecuteMethod = canExecuteMethod;
-		}
+        bool ICommand.CanExecute(object parameter)
+        {
 
-		bool ICommand.CanExecute(object parameter)
-		{
+            if (_TargetCanExecuteMethod != null)
+            {
+                var tparm = (T)parameter;
+                return _TargetCanExecuteMethod(tparm);
+            }
 
-			if (_TargetCanExecuteMethod != null)
-			{
-				T tparm = (T) parameter;
-				return _TargetCanExecuteMethod(tparm);
-			}
+            if (_TargetExecuteMethod != null)
+            {
+                return true;
+            }
 
-			if (_TargetExecuteMethod != null)
-			{
-				return true;
-			}
+            return false;
+        }
 
-			return false;
-		}
+        public event EventHandler CanExecuteChanged = delegate { };
 
-		public event EventHandler CanExecuteChanged = delegate { };
+        void ICommand.Execute(object parameter)
+        {
+            _TargetExecuteMethod?.Invoke((T)parameter);
+        }
 
-		void ICommand.Execute(object parameter)
-		{
-			_TargetExecuteMethod?.Invoke((T) parameter);
-		}
-
-		public void RaiseCanExecuteChanged()
-		{
-			CanExecuteChanged(this, EventArgs.Empty);
-		}
-	}
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged(this, EventArgs.Empty);
+        }
+    }
 }
