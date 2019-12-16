@@ -194,7 +194,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="CG1 T5 I2 G2 P2.txt" />
+    <Resource Include="CG2 T5 I2 G2 P2.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Dodavanje servera.png" />
